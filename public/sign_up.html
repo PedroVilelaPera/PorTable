@@ -5,15 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portable</title>
 
-    <link rel="stylesheet" type="text/css" href="login_style.css">
+    <link rel="stylesheet" type="text/css" href="css/login_style.css">
+
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 </head>
 <body>
     <main>
         <section>
             <h1>PorTable</h1>
-            <form action="/login" method="post">
+            <form>
                 <h2 class="title">Username:</h2>
                 <input type="text" id="username" name="username" required>
+                <h2 class="title">Email:</h2>
+                <input type="email" id="email" name="email" required>
                 <h2 class="title">Password:</h2>
                 <input type="password" id="password" name="password" required>
                 <button type="submit">Sign-up</button>
