@@ -1,8 +1,7 @@
-import { cache } from 'react';
 import { initAuth, login } from '../services/auth_service.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('login-form');
+    const loginForm = document.getElementById('loginForm');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
     const loginButton = document.getElementById('loginButton');
