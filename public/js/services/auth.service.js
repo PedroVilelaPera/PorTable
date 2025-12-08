@@ -1,4 +1,4 @@
-import { firebaseConfig } from '../config/config.js';
+import { firebaseConfig } from '../../config/config.js';
 
 let auth = null;
 let idToken = null;

@@ -1,4 +1,4 @@
-import { initAuth, login } from '../services/auth_service.js';
+import { initAuth, login } from '../services/auth.service.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');

@@ -1,4 +1,4 @@
-export const BASE_URL = process.env.PORT || 'http://localhost:5000';
+export const BASE_URL = 'http://localhost:5000';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyB8UiFpU275k8rsf048vwX3-Ij-HmuT_68",
