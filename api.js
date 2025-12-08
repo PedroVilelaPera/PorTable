@@ -28,6 +28,7 @@ async function initializeApp() {
         console.log('Firebase Admin Initialized...');
     } catch (error) {
         console.error('Firebase Admin Initialization Error', error);
+        process.exit(1);
     }
 
     // Database
@@ -41,8 +42,8 @@ async function initializeApp() {
     }
     
     // Routes
-    // const fichaRoutes = require('./routes/ficha_routes');
-    // app.use('/', fichaRoutes); 
+    const routes = require('./src/routes/routes.js');
+    app.use('/sheets', routes);
     
     // Initialize server
     app.listen(PORT, () => {
