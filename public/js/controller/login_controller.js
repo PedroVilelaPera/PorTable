@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
-    const loginButton = document.getElementById('loginButton');
+    const loginButton = document.getElementById('loginBtn');
+    const logoutButton = document.getElementById('logoutBtn');
     //const errorMessage = document.getElementById('error-message');
 
     initAuth((user) => {
