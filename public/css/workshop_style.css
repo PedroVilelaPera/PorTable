@@ -38,19 +38,16 @@ header {
     width: 100%;
     min-height: 2rem;
     height: 6vh;
-    position: fixed;
-    top: 0;           
-    left: 0;          
-    z-index: 1000; 
-    
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    
-    padding: 0rem 1rem;
-
     background-color: black;
     border-bottom: .125rem solid white;
+    position: fixed; 
+    top: 0;           
+    left: 0;          
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+    align-items: center;
 }
 
 main {
@@ -61,9 +58,39 @@ main {
 }
 
 .side-bar {
-    min-width: 20rem;
+    min-width: 10rem;
+    max-width: 40vh;
+    flex: 1;
     border-right: 0.375rem double white;
     background-color: black;
+    display: flex;
+    flex-direction: column;   
+}
+
+#c-sheets-conteiner {
+    width: 100%;
+    padding: 0rem .25rem;
+    padding-top: 1rem;
+    gap: .25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-bar-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 3vh;
+    padding: .25rem;
+}
+
+#add-sheet {
+    display: flex;
+    justify-content: end;
+}
+
+.c-sheet-body {
+    display: flex;
+    width: 100%;
 }
 
 .sections-conteiner {
@@ -104,6 +131,7 @@ main {
     align-self: flex-end;
     justify-self: flex-end;
     display: flex;
+    padding: .15rem;
 }
 
 .sect-title {
@@ -114,14 +142,9 @@ main {
 
 .bnt {
     outline: none;
-
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    font-size: medium;
-    font-weight: bolder;
-
     border: none;
     cursor: pointer;
 }
@@ -138,7 +161,7 @@ main {
 
 /*---------------------------ABILITYS---------------------------*/
 
-.ability {
+.ability-body {
     border: 2px solid white;
 }
 
@@ -154,20 +177,20 @@ main {
     display: flex;
 }
 
-.ability .ability-toggle, .down-bnt {
+.ability-body .ability-toggle, .down-bnt {
     transform: rotate(180deg);
 }
 
-.ability.collapsed .ability-toggle {
+.ability-body.collapsed .ability-toggle {
     transform: rotate(0deg);
 }
 
-.ability.collapsed .ability-desc,
-.ability.collapsed .ability-footer {
+.ability-body.collapsed .ability-desc,
+.ability-body.collapsed .ability-footer {
     display: none;
 }
 
-.ability.collapsed .ability-name {
+.ability-body.collapsed .ability-name {
     border-bottom: 0px solid white;
 }
 
@@ -212,10 +235,10 @@ main {
 
 /*---------------------------LABELEDVALUE---------------------------*/
 
-.labeled-value {
+.labeled-value-body {
     width: 100%;
     display: flex;
-    gap: .1rem;
+    gap: .5rem;
     align-items: center;
 }
 
@@ -227,7 +250,7 @@ main {
     color: white;
     padding: 0rem .5rem;
     text-align: center;
-    width: 100;
+    width: 100%;
 }
 
 .labeled-value.textarea.value {
@@ -262,4 +285,81 @@ main {
     background-color: black;
     color: white;
     text-align: center;
+    margin-bottom: 1rem;
+}
+
+.sect-main-sub-menu-title {
+    font-weight: lighter;
+    font-size: max(1rem, 2.5vh);
+}
+
+.sect-main-sub-menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    padding: .15rem;
+}
+
+.current-level-conteiner {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: .9rem;
+}
+.current-level-input {
+    height: 100%;
+    font-size: 1rem;
+    width: 10%;
+    outline: none;
+    border: none;
+    border-bottom: .125rem solid white;
+    border-top: .125rem solid black;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+.current-level-conteiner span {
+    padding: .25rem 0rem;
+    border-bottom: .125rem solid white;
+}
+
+.bar-body {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: .5rem;
+}
+
+.bar.input {
+    height: 100%;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.bar.value {
+    min-width: 2rem;
+    width: 25%;
+    border: 2px solid white;
+}
+
+.bar.input.name {
+    width: 100%;
+    border-bottom: .125rem solid white;
+    border-top: .125rem solid black;
+}
+
+.bar.max-value {
+    color: gray;
+}
+
+
+.sheet-name {
+    width: 100%;
+    border: 2px solid white;
 }
