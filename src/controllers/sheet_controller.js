@@ -1,8 +1,7 @@
-const { createSheetModel } = require('../models/sheet_model.js');
-const { getSheetsController } = require('../controllers/sheet_controller.js');
+const { createSheetModel } = require('../models/sheet_model.js');''
 const { findUserID } = require('../models/user_model.js');
 
-export async function createSheetController(req, res) {
+exports.createSheetController = async (req, res) => {
     try {
         const user = await findUserID(req.body.firebase_uid);
         if (!user) {
@@ -19,7 +18,7 @@ export async function createSheetController(req, res) {
     };
 };
 
-export async function getSheetsController(req, res) {
+exports.getSheetsController = async (req, res) => {
     try {
         const user = await findUserID(req.body.firebase_uid);
         if (!user) {
