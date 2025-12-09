@@ -543,3 +543,6 @@ function updateSideBar() {
         document.getElementById('c-sheets-conteiner').appendChild(divCSheet)
     }
 }
+
+// Expose the function to the global scope (Window) so other scripts can use it
+window.collectSheetData = saveCharactherData;
