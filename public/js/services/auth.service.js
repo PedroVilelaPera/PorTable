@@ -1,28 +1,17 @@
 import { firebaseConfig } from '../../config/config.js';
 
 let auth = null;
-let idToken = null;
 
+// Initialize Firebase Authentication and listen for user changes
 export function initAuth(onUserChanged) {
+    // Check if firebase is already initialized
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     }
     auth = firebase.auth();
 
-    auth.onAuthStateChanged(async (user) => {
-        if (user) {
-            try {
-                idToken = await user.getIdToken(true);
-                onUserChanged(user);
-            } catch (error) {
-                console.error("Erro ao obter token:", error);
-                idToken = null;
-                onUserChanged(null);
-            }
-        } else {
-            idToken = null;
-            onUserChanged(null);
-        }
+    auth.onAuthStateChanged((user) => {
+        onUserChanged(user);
     });
 }
 
