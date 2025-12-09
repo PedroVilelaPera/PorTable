@@ -43,7 +43,7 @@ async function initializeApp() {
     
     // Routes
     const routes = require('./src/routes/routes.js');
-    app.use('/sheets', routes);
+    app.use('/', routes);
     
     // Initialize server
     app.listen(PORT, () => {

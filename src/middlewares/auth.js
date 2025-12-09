@@ -1,6 +1,6 @@
 const admin = require('firebase-admin');
 
-const authMiddleware = async (req, res, next) => {
+exports.authMiddleware = async (req, res, next) => {
     try {
         // 1. Pega o header de autorização (Ex: "Bearer eyJhbGciOi...")
         const authHeader = req.headers.authorization;
@@ -37,5 +37,3 @@ const authMiddleware = async (req, res, next) => {
         return res.status(403).json({ error: 'Token inválido ou acesso negado.' });
     }
 };
-
-module.exports = authMiddleware;
