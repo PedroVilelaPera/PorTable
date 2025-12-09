@@ -1,15 +1,15 @@
 const arrCharacter_sheets = [
     {
         'sect-main' : [
-            'BOB', 
+            'Awesome Character', 
             [['HP','10','10']], 
-            ['5',['VIGOR','5']]
+            ['5',['Awesome Attribute','5']]
         ],
         'sect-skills' : [
-            ['SURVIVAL','5']
+            ['Awesome Skill','5']
         ],
         'sect-abilitys' : [
-            ['P','U','N']
+            ['Awesome Ability','','']
         ]
     }
 ]
@@ -432,11 +432,6 @@ function updatePage()
     character_sheet["sect-abilitys"].forEach(ability => {addAbility(ability)});
 
     updateSideBar()
-}
-
-function logoutAcc() {
-    character_sheet = arrCharacter_sheets[Math.round(Math.random())]
-    updatePage()
 }
 
 function addCSheet() {
