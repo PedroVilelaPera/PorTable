@@ -136,7 +136,7 @@ function addAbility(abilityData)
 
     Object.assign(inputAbilityName, {
         type: 'text', 
-        maxLength: '30',
+        maxLength: '100',
         placeholder: "ABILITY'S NAME", 
         className: 'ability-name', 
         value: abilityName
@@ -167,7 +167,7 @@ function addAbility(abilityData)
 
     Object.assign(inputAbilityDesc, {
         rows: '5', 
-        maxLength: '300', 
+        maxLength: '2000', 
         placeholder: "ABILITY'S DESCRIPTION", 
         className: 'ability-desc', 
         value: abilityDesc
@@ -183,7 +183,7 @@ function addAbility(abilityData)
 
     Object.assign(inputAbilityRoll, {
         type: 'text', 
-        maxLength: '30',
+        maxLength: '100',
         placeholder: 'XdXX + X', 
         className: 'ability-roll', 
         value: abilityRoll
@@ -558,3 +558,19 @@ function collectAllSheets() {
 
 // Expose the function to the global scope
 window.collectAllSheets = collectAllSheets;
+
+// Function to load sheet data from cloud into the UI
+function loadSheetData(cloudData) {
+    // Update the arrCharacter_sheets with cloud data
+    arrCharacter_sheets.length = 0; // Clear existing data in the array
+    cloudData.forEach(sheet => arrCharacter_sheets.push(sheet));
+    
+    // Reset to the first sheet and update the UI
+    cSheetIndex = 0;
+    character_sheet = arrCharacter_sheets[0];
+    updatePage(); // Update the page with the new data
+    updateSideBar(); // Refresh the sidebar to reflect loaded sheets
+}
+
+// Expose the function to the global scope
+window.loadSheetData = loadSheetData;

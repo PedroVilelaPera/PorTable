@@ -41,3 +41,30 @@ export async function saveSheet(sheetData) {
         return false;
     }
 }
+
+export async function loadSheets() {
+    try {
+        const token = await getIdToken();
+        if (!token) return null;
+
+        const response = await fetch(`${API_URL}/sheets`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Error fetching sheets');
+        }
+
+        const result = await response.json();
+        
+        //Backend now returns an object with a "sheets" property
+        return result.sheets; 
+
+    } catch (error) {
+        console.error('Load error:', error);
+        return null;
+    }
+}

@@ -1,6 +1,25 @@
-import { saveSheet } from '../services/sheet_service.js';
+import { saveSheet, loadSheets } from '../services/sheet_service.js';
+import { initAuth } from '../services/auth.service.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+    initAuth(async (user) => {
+        if (user) {
+            console.log("Usuário detectado. Buscando fichas...");
+            const cloudSheets = await loadSheets();
+
+            if (cloudSheets && Array.isArray(cloudSheets) && cloudSheets.length > 0) {
+                console.log("Fichas carregadas:", cloudSheets);
+                
+                // Assuming a global function to load sheet data into the UI
+                if (typeof window.loadSheetData === 'function') {
+                    window.loadSheetData(cloudSheets);
+                } else {
+                    console.warn("Função window.loadSheetData não encontrada.");
+                }
+            }
+        }
+    });
+    
     const saveBtn = document.getElementById('saveBtn');
 
     if (saveBtn) {
