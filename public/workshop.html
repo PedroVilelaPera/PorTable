@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PorTable</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+
+    <link rel="stylesheet" type="text/css" href="css/workshop_style.css">
+
+    <!-- Firebase SDK Link -->
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+</head>
+<body>
+
+    <header>
+        <button id="logoutBtn" class="bnt black-white">
+            <span class="material-symbols-outlined">logout</span>
+        </button>
+        <h1>PorTable</h1>
+        <button id="saveBtn" class="bnt black-white">
+            <span class="material-symbols-outlined">save</span>
+        </button>
+    </header>
+
+    <main>
+        <aside class="side-bar">
+            <div class="side-bar-header">
+                <span>--CHARACTER SHEETS</span>
+                <button id="add-sheet" class="bnt black-white">
+                    <span class="material-symbols-outlined">add_box</span>
+                </button>
+            </div>
+            
+            <div id="c-sheets-conteiner">
+                
+            </div>
+        </aside>
+        
+        <div class="sections-conteiner"> 
+            <section id="sect-main" class="character-sheet-sect">
+                <h1 class="sect-title">--MAIN-INFO--</h1>
+
+                <div id="main-info-conteiner" class="sect-content-conteiner">
+
+                    <div class="sect-main-character-pic"></div>
+                    <input type="text" maxlength="30" id="sect-main-character-name" class="sect-main-character-name-input" placeholder="CHARACTER'S NAME">
+
+                    <div class="sect-main-sub-menu" id="bars-conteiner">
+                        <h1 class="sect-main-sub-menu-title">-BARS-</h1>
+                    </div>
+                    <div class="sect-main-sub-menu" id="attributes-conteiner">
+                        <h1 class="sect-main-sub-menu-title">-ATTRIBUTES-</h1>
+                        <div class="current-level-conteiner">
+                            <span>LEVEL:</span>
+                            <input type="number" class="current-level-input" id="current-level"> 
+                        </div>
+                    </div>
+
+                </div>
+                <div class="sect-footer">
+                    <button id="add-bar" class="bnt black-white">
+                        <span class="material-symbols-outlined">tune</span>
+                    </button>
+                    <button id="add-attribute" class="bnt black-white">
+                        <span class="material-symbols-outlined">eda</span>
+                    </button>
+                </div>
+                
+            </section>
+            <section id="sect-skills" class="character-sheet-sect">
+                <h1 class="sect-title">--SKILLS--</h1>
+                <div id="skills-conteiner" class="sect-content-conteiner"></div>
+                <div class="sect-footer">
+                    <button id="add-skill" class="bnt black-white">
+                        <span class="material-symbols-outlined">contract</span>
+                    </button>
+                </div>
+            </section>
+            <section id="sect-abilitys" class="character-sheet-sect">
+                <h1 class="sect-title">--ABILITYS--</h1>
+                <div id="abilitys-conteiner" class="sect-content-conteiner"></div>
+                <div class="sect-footer">
+                    <button id="add-ability" class="bnt black-white">
+                        <span class="material-symbols-outlined">swords</span>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="js/views/workshop_controller.js"></script>
+    <script type="module" src="js/controllers/auth_controller.js"></script>
+</body>
+</html>

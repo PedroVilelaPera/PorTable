@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/login_style.css">
     
+    <!-- Firebase SDK Link -->
     <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 </head>
@@ -20,11 +21,11 @@
                 <input type="email" id="email" name="email" required>
                 <h2 class="title">Password:</h2>
                 <input type="password" id="password" name="password" required>
-                <button id="loginButton" type="submit">Login</button>
+                <button id="loginBtn" type="submit">Login</button>
             </form>
         </section>
         <p id="p_sign" class="title">Don't have an account? <a href="sign_up.html">Sign-up</a></p>
     </main>
-    <script type="module" src="js/controller/login_controller.js"></script>
+    <script type="module" src="js/controllers/auth_controller.js"></script>
 </body>
 </html>
