@@ -544,5 +544,17 @@ function updateSideBar() {
     }
 }
 
-// Expose the function to the global scope (Window) so other scripts can use it
-window.collectSheetData = saveCharactherData;
+//Saves current sheet and return all sheets' data
+function collectAllSheets() {
+    // Save current sheet data
+    const currentData = saveCharactherData();
+    
+    //Update the current sheet index in the array
+    arrCharacter_sheets[cSheetIndex] = currentData;
+
+    //Return all sheets data
+    return arrCharacter_sheets;
+}
+
+// Expose the function to the global scope
+window.collectAllSheets = collectAllSheets;

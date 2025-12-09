@@ -1,4 +1,4 @@
-import { saveSheet } from '../services/sheet.service.js';
+import { saveSheet } from '../services/sheet_service.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const saveBtn = document.getElementById('saveBtn');
@@ -10,24 +10,24 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("Saving sheets in the database...");
 
             //Uses the global function defined in workshop_controller.js to collect sheet data
-            if (typeof window.collectSheetData !== 'function') {
-                console.error("Erro: Function collectSheetData not found. Verify workshop_controller.js");
+            if (typeof window.collectAllSheets !== 'function') {
+                console.error("Erro: Function collectAllSheets not found. Verify workshop_controller.js");
                 alert("Internal error: Unable to save sheet data.");
                 return;
             }
 
-            const sheetData = window.collectSheetData();
+            const allSheetsData = window.collectAllSheets();
 
             //Visual feedback to the user
-            const originalText = saveBtn.innerText;
-            saveBtn.innerText = "Salvando...";
+            const originalHTML = saveBtn.innerHTML;
+            saveBtn.innerText = "Saving...";
             saveBtn.disabled = true;
 
             //Call the service to save the sheet data
-            const success = await saveSheet(sheetData);
+            const success = await saveSheet(allSheetsData);
 
             //Restore button state
-            saveBtn.innerText = originalText;
+            saveBtn.innerHTML = originalHTML;
             saveBtn.disabled = false;
 
             if (success) {
