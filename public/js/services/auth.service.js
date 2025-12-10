@@ -2,51 +2,61 @@ import { firebaseConfig } from '../../config/config.js';
 
 let auth = null;
 
-// Initialize Firebase Authentication and listen for user changes
-export function initAuth(onUserChanged) {
-    // Check if firebase is already initialized
-    if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-    }
-    auth = firebase.auth();
-
-    // Listener for auth state changes (login/logout)
-    auth.onAuthStateChanged(async (user) => {
-        if (user) {
-            // User is signed in
-            onUserChanged(user);
-        } else {
-            // User is signed out
-            onUserChanged(null);
+// Auxiliary function to ensure Firebase Auth is initialized
+function ensureAuth() {
+    if (!auth) {
+        // If Firebase SDK is not already loaded, load it
+        if (typeof firebase !== 'undefined' && !firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
         }
-    });
+        if (typeof firebase !== 'undefined') {
+            auth = firebase.auth();
+        } else {
+            console.error("Firebase SDK não carregado no HTML.");
+        }
+    }
+    return auth;
 }
 
-// Get the current valid token (refreshes automatically if expired)
+// Auth service functions
+export function initAuth(onUserChanged) {
+    const authInstance = ensureAuth();
+    if (authInstance) {
+        authInstance.onAuthStateChanged(async (user) => {
+            if (user) {
+                onUserChanged(user);
+            } else {
+                onUserChanged(null);
+            }
+        });
+    }
+}
+
+// Get the current user's ID token
 export async function getIdToken() {
-    if (auth && auth.currentUser) {
-        // Returns the current token or fetches a new one if expired
-        return await auth.currentUser.getIdToken();
+    const authInstance = ensureAuth();
+    if (authInstance && authInstance.currentUser) {
+        return await authInstance.currentUser.getIdToken();
     }
     return null;
 }
 
-// Login with email and password
+// Login, Register, and Logout functions
 export async function login(email, password) {
-    return auth.signInWithEmailAndPassword(email, password);
+    const authInstance = ensureAuth();
+    return authInstance.signInWithEmailAndPassword(email, password);
 }
 
-// Register a new user
 export async function register(email, password, name) {
-    const cred = await auth.createUserWithEmailAndPassword(email, password);
+    const authInstance = ensureAuth();
+    const cred = await authInstance.createUserWithEmailAndPassword(email, password);
     if (name) {
-        // Update the user profile with the provided name
         await cred.user.updateProfile({ displayName: name });
     }
     return cred.user;
 }
 
-// Logout the current user
 export async function logout() {
-    return auth.signOut();
+    const authInstance = ensureAuth();
+    return authInstance.signOut();
 }

@@ -2,10 +2,10 @@ const admin = require('firebase-admin');
 
 exports.authMiddleware = async (req, res, next) => {
     try {
-        // 1. Pega o header de autorização (Ex: "Bearer eyJhbGciOi...")
+        // Picking the Authorization header from the request
         const authHeader = req.headers.authorization;
 
-        // 2. Validação básica: O header existe e começa com "Bearer "?
+        // Verifying if the header exists and is well formatted
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
             return res.status(401).json({ 
                 error: 'Token não fornecido ou mal formatado.',
@@ -13,18 +13,16 @@ exports.authMiddleware = async (req, res, next) => {
             });
         }
 
-        // 3. Extrai apenas o token (remove a palavra "Bearer ")
+        // Extracting the token from the header
         const token = authHeader.split(' ')[1];
 
-        // 4. Verifica a validade e decodifica o token com o Firebase Admin
-        // Se o token for falso, expirado ou adulterado, isso vai gerar um erro (catch)
+        // Verifying the token using Firebase Admin SDK
         const decodedToken = await admin.auth().verifyIdToken(token);
 
-        // 5. Anexa os dados do usuário ao objeto req
-        // Agora, nas suas rotas, você pode usar `req.user.uid`, `req.user.email`, etc.
+        // Inserting user info into the request object
         req.user = decodedToken;
 
-        // 6. Passa para a próxima função (sua rota ou controller)
+        // Proceeding to the next middleware or route handler
         next();
 
     } catch (error) {
